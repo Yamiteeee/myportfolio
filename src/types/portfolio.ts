@@ -21,6 +21,7 @@ export interface SlideProject {
   subtitle: string;
   description: string;
   tags: string[];
+images?: string[]; 
   actions: ProjectAction[];
   // New flag to handle automatic UI sorting
   category: "featured" | "mobile" | "automation"; 

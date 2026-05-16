@@ -1,28 +1,37 @@
 import { SlideProject, GridItem } from "@/types/portfolio";
 
 export const mockProjects: SlideProject[] = [
-  // =========================================================
-  // ALL SHOWCASE PROJECTS NOW CYCLE SMOOTHLY IN THE SLIDESHOW
-  // =========================================================
   {
     id: "lms-enterprise",
     category: "featured",
     title: "Learning Management System",
     subtitle: "Enterprise Solutions",
     description: "Engineered a full-scale LMS optimized for regional institutional training deployment. Built a unified architecture featuring dynamic content delivery models, micro-enrollment rules, and secure analytical tracking engines.",
-    tags: ["Next.js", "PHP", "MySQL", "Tailwind"],
+    tags: ["Next.js", "Node.js", "MySQL", "Tailwind CSS", "Framer Motion"],
+    images: [
+      "/public/asset/LMS Teacher Dashboard.png", 
+      "/public/asset/LMS Teacher subject dashboard.png",
+      "/public/asset/LMS Student subject dashboard.png",
+      "/public/asset/exam quizes.png",
+        "asset/exam quiz dashbaord.png"
+    ],
     actions: [
       { label: "Explore Platform", variant: "secondary", href: "https://github.com/your-username/lms-repo" },
       { label: "Architecture", variant: "outline", href: "https://github.com/your-username/lms-repo#architecture" }
     ]
   },
+
+  
   {
     id: "flutter-ticketing",
-    category: "featured", // Moved here to cycle directly inside your main slideshow!
+    category: "featured",
     title: "IT Ticketing Mobile App",
     subtitle: "Mobile Solutions",
     description: "Designed and implemented a native cross-platform incident tracking utility. Developed client portal queues, dynamic push payloads, and custom support dispatch metrics.",
     tags: ["Flutter", "Dart", "Node.js", "MongoDB"],
+    images: [
+      "/asset/ticketing-preview.png"
+    ],
     actions: [
       { label: "View Source", variant: "secondary", href: "https://github.com/your-username/ticket-app" }
     ]
@@ -34,6 +43,9 @@ export const mockProjects: SlideProject[] = [
     subtitle: "Showcase Platforms",
     description: "A highly interactive, structurally balanced grid ecosystem built to aggregate live updates via API streams. Optimized for zero cumulative layout shift (CLS) and smooth client-side rendering transitions.",
     tags: ["Next.js", "TypeScript", "Tailwind CSS"],
+    images: [
+      "/asset/portfolio-preview.png"
+    ],
     actions: [
       { label: "View Source", variant: "secondary", href: "https://github.com/your-username/bento-portfolio" }
     ]
@@ -52,7 +64,7 @@ export const gridLayoutItems: GridItem[] = [
   {
     id: "projects-showcase-slider",
     type: "project-slider",
-    gridClasses: "md:col-span-2 md:row-span-2 p-8",
+    gridClasses: "md:col-span-2 md:row-span-2 p-6 md:p-8",
   },
   {
     id: "web-ecosystem",
@@ -64,10 +76,10 @@ export const gridLayoutItems: GridItem[] = [
   },
   {
     id: "mobile-engineering",
-    type: "mobile", // Now serves purely as a tech-stack style block
+    type: "mobile",
     title: "Mobile Engineering",
     subtitle: "Cross-platform development",
-    tags: ["Flutter", "Dart"], // Focused strictly on your core mobile stack
+    tags: ["Flutter", "Dart"],
     gridClasses: "md:col-span-1",
   },
   {

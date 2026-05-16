@@ -2,10 +2,12 @@
 
 import { cn } from "@/lib/utils";
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, HTMLMotionProps } from "framer-motion";
 import { useColors } from "@/providers/color-provider";
 import { Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+
+
 
 // 1. ENSURE EXPLICIT BENTOGRID EXPORT IS LOCKED IN
 export const BentoGrid = ({
@@ -27,8 +29,15 @@ export const BentoGrid = ({
   );
 };
 
+export interface BentoCardAction {
+  label: string;
+  variant?: "primary" | "secondary" | "outline" | "ghost" | "link" | "default" | any;
+  size?: "sm" | "md" | "lg"; // Fixed: Match your button contract exactly
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
 // 2. SUPPORT ALL INTERFACE CONTRACTS RECOGNIZED BY BENTOLAYOUT
-interface BentoCardProps {
+interface BentoCardProps extends Omit<HTMLMotionProps<"div">, "children" | "avatar"> {
   className?: string;
   children?: React.ReactNode;
   avatar?: {
@@ -37,9 +46,9 @@ interface BentoCardProps {
     initials: string;
     size?: "sm" | "md" | "lg" | "xl";
   };
-  actions?: any[];
+  actions?: BentoCardAction[];
   motionVariants?: any;
-  asMotion?: boolean; // Injected this line to completely wipe out TS Error 2322!
+  asMotion?: boolean;
 }
 
 export const BentoCard = ({
@@ -48,6 +57,8 @@ export const BentoCard = ({
   avatar,
   actions,
   motionVariants,
+  asMotion,
+  ...props
 }: BentoCardProps) => {
   const colors = useColors();
 
@@ -68,9 +79,11 @@ export const BentoCard = ({
     <motion.div
       variants={motionVariants}
       className={classes}
+      {...props}
     >
+      {/* Fallback for components explicitly relying on the prop contract */}
       {avatar && (
-        <div className="flex justify-between items-start w-full">
+        <div className="flex justify-between items-start w-full z-10">
           <Avatar 
             src={avatar.src} 
             alt={avatar.alt} 
@@ -81,22 +94,30 @@ export const BentoCard = ({
         </div>
       )}
       
-      <div className="flex-1 flex flex-col">
+      {/* flex-1 full layout container so custom inner DOM items scale perfectly */}
+      <div className="flex-1 flex flex-col h-full w-full relative">
         {children}
       </div>
 
       {actions && actions.length > 0 && (
-        <div className="flex flex-wrap gap-2 pt-2 mt-auto w-full z-10">
-          {actions.map((btn, index) => (
-            <Button
-              key={`${btn.label}-${index}`}
-              variant={btn.variant || "primary"}
-              size={btn.size || "sm"}
-              onClick={btn.onClick}
-            >
-              {btn.label}
-            </Button>
-          ))}
+        <div className="flex flex-wrap gap-2 pt-2 mt-auto w-full z-20">
+          {actions.map((btn, index) => {
+            // Guard clause to sanitize mixed values and resolve types perfectly
+            const finalSize = btn.size === "md" || btn.size === "lg" || btn.size === "sm"
+              ? btn.size
+              : "sm";
+
+            return (
+              <Button
+                key={`${btn.label}-${index}`}
+                variant={btn.variant === "primary" ? "default" : btn.variant || "default"}
+                size={finalSize}
+                onClick={btn.onClick}
+              >
+                {btn.label}
+              </Button>
+            );
+          })}
         </div>
       )}
     </motion.div>
