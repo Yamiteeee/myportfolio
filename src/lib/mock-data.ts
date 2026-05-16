@@ -1,8 +1,12 @@
 import { SlideProject, GridItem } from "@/types/portfolio";
 
 export const mockProjects: SlideProject[] = [
+  // =========================================================
+  // ALL SHOWCASE PROJECTS NOW CYCLE SMOOTHLY IN THE SLIDESHOW
+  // =========================================================
   {
     id: "lms-enterprise",
+    category: "featured",
     title: "Learning Management System",
     subtitle: "Enterprise Solutions",
     description: "Engineered a full-scale LMS optimized for regional institutional training deployment. Built a unified architecture featuring dynamic content delivery models, micro-enrollment rules, and secure analytical tracking engines.",
@@ -14,12 +18,24 @@ export const mockProjects: SlideProject[] = [
   },
   {
     id: "flutter-ticketing",
+    category: "featured", // Moved here to cycle directly inside your main slideshow!
     title: "IT Ticketing Mobile App",
     subtitle: "Mobile Solutions",
     description: "Designed and implemented a native cross-platform incident tracking utility. Developed client portal queues, dynamic push payloads, and custom support dispatch metrics.",
     tags: ["Flutter", "Dart", "Node.js", "MongoDB"],
     actions: [
       { label: "View Source", variant: "secondary", href: "https://github.com/your-username/ticket-app" }
+    ]
+  },
+  {
+    id: "portfolio-v3",
+    category: "featured",
+    title: "Automated Bento Portfolio",
+    subtitle: "Showcase Platforms",
+    description: "A highly interactive, structurally balanced grid ecosystem built to aggregate live updates via API streams. Optimized for zero cumulative layout shift (CLS) and smooth client-side rendering transitions.",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS"],
+    actions: [
+      { label: "View Source", variant: "secondary", href: "https://github.com/your-username/bento-portfolio" }
     ]
   }
 ];
@@ -48,10 +64,10 @@ export const gridLayoutItems: GridItem[] = [
   },
   {
     id: "mobile-engineering",
-    type: "mobile",
+    type: "mobile", // Now serves purely as a tech-stack style block
     title: "Mobile Engineering",
-    subtitle: "Cross-platform applications",
-    tags: ["Flutter", "Dart", "IT Ticketing Apps"],
+    subtitle: "Cross-platform development",
+    tags: ["Flutter", "Dart"], // Focused strictly on your core mobile stack
     gridClasses: "md:col-span-1",
   },
   {

@@ -14,16 +14,17 @@ export function DashboardShell({ children, className }: DashboardShellProps) {
   return (
     <div 
       className={cn(
-        "min-h-screen w-full flex flex-col justify-center items-center transition-colors duration-300",
+        "min-h-screen w-full flex flex-col justify-start items-center transition-colors duration-500 ease-in-out",
         colors.background.main,
         colors.text.main, 
         className
       )}
     >
-      <main className="container mx-auto px-4 py-10 md:py-20 w-full flex justify-center items-center">
-        <div className="w-full max-w-7xl">
-          {children}
-        </div>
+      {/* Removed the restrictive container wrappers so your BentoLayout layout 
+        has total layout authority across full width limits seamlessly 
+      */}
+      <main className="w-full flex-1 flex flex-col justify-start">
+        {children}
       </main>
     </div>
   );

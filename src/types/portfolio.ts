@@ -22,6 +22,8 @@ export interface SlideProject {
   description: string;
   tags: string[];
   actions: ProjectAction[];
+  // New flag to handle automatic UI sorting
+  category: "featured" | "mobile" | "automation"; 
 }
 
 export interface GridItem {
